@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ad Network Demo</title>
+<style>
+    :root {
+        --bg: #0f1115;
+        --panel: #171a21;
+        --border: #2a2f3a;
+        --text: #e8eaed;
+        --muted: #8a8f9c;
+        --accent: #4f8cff;
+    }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 16px;
+    }
+    header {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+    header h1 {
+        font-size: 1.5rem;
+        margin: 0 0 8px;
+    }
+    header p {
+        color: var(--muted);
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    main {
+        width: 100%;
+        max-width: 640px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .content-block {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+    }
+    .content-block h2 {
+        font-size: 1rem;
+        margin: 0 0 8px;
+    }
+    .content-block p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* ── Ad slot ───────────────────────────────────────────── */
+    .ad-slot {
+        background: var(--panel);
+        border: 1px dashed var(--border);
+        border-radius: 10px;
+        min-height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        overflow-x: auto;
+    }
+    .ad-slot .placeholder-label {
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-align: center;
+    }
+    .ad-slot .placeholder-label code {
+        display: block;
+        margin-top: 6px;
+        color: var(--accent);
+        font-size: 0.75rem;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Ad Network Demo — Cloudflare Pages</h1>
+    <p>এই পেজটা শুধু ad script ঠিকভাবে লোড/রেন্ডার হচ্ছে কিনা টেস্ট করার জন্য</p>
+</header>
+
+<main>
+
+    <div class="content-block">
+        <h2>Sample content</h2>
+        <p>এখানে আসল সাইটের কনটেন্ট বসবে। এই ব্লকটা শুধু বোঝানোর জন্য যে ad slot-টা কনটেন্টের মধ্যে কেমন দেখাবে।</p>
+    </div>
+
+    <!-- ============================================================
+         AD SLOT — এখানে ad network-এর script/HTML বসবে।
+         Adsterra সাইন-আপ করে script কপি করার পর এই <div id="ad-slot-1">...</div>
+         এর ভেতরের placeholder-টুকু বদলে তাদের কোড বসিয়ে দিন।
+         ============================================================ -->
+    <div class="ad-slot" id="ad-slot-1">
+        <script>
+          atOptions = {
+            'key' : 'a2284667b753c7175c24b1651c07d2ff',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/a2284667b753c7175c24b1651c07d2ff/invoke.js"></script>
+    </div>
+
+    <div class="content-block">
+        <h2>আরেকটা content block</h2>
+        <p>একাধিক জায়গায় ad বসাতে চাইলে <code>.ad-slot</code> ডিভটা কপি করে অন্য id দিয়ে বসাতে পারেন (যেমন <code>ad-slot-2</code>)।</p>
+    </div>
+
+    <!-- ============================================================
+         160x300 Banner
+         ============================================================ -->
+    <div class="ad-slot" id="ad-slot-160x300">
+        <script>
+          atOptions = {
+            'key' : '26b92e30118f8cb68595fa412877e9c8',
+            'format' : 'iframe',
+            'height' : 300,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/26b92e30118f8cb68595fa412877e9c8/invoke.js"></script>
+    </div>
+
+    <!-- ============================================================
+         160x600 Banner (লম্বা, sidebar/skyscraper টাইপ)
+         ============================================================ -->
+    <div class="ad-slot" id="ad-slot-160x600">
+        <script>
+          atOptions = {
+            'key' : '2bcfe15b40f90274173e8042fc95e64a',
+            'format' : 'iframe',
+            'height' : 600,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/2bcfe15b40f90274173e8042fc95e64a/invoke.js"></script>
+    </div>
+
+    <!-- ============================================================
+         320x50 Banner (mobile-friendly ছোট ব্যানার)
+         ============================================================ -->
+    <div class="ad-slot" id="ad-slot-320x50">
+        <script>
+          atOptions = {
+            'key' : 'dcfe6dfe08c222969aeac5ba15427f01',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/dcfe6dfe08c222969aeac5ba15427f01/invoke.js"></script>
+    </div>
+
+    <!-- ============================================================
+         468x60 Banner
+         ============================================================ -->
+    <div class="ad-slot" id="ad-slot-468x60">
+        <script>
+          atOptions = {
+            'key' : '4286b4061b1291fcef34aff9d34ca464',
+            'format' : 'iframe',
+            'height' : 60,
+            'width' : 468,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/4286b4061b1291fcef34aff9d34ca464/invoke.js"></script>
+    </div>
+
+    <!-- ============================================================
+         728x90 Banner (leaderboard, desktop-এ বেশি চওড়া জায়গা লাগে)
+         ============================================================ -->
+    <div class="ad-slot" id="ad-slot-728x90">
+        <script>
+          atOptions = {
+            'key' : 'a053662b5ec297065ee79f06eba09746',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/a053662b5ec297065ee79f06eba09746/invoke.js"></script>
+    </div>
+
+    <!-- ============================================================
+         Native Banner (কনটেন্টের সাথে মিশে থাকে, নিজের চেহারা নিজে নিয়ে আসে)
+         ============================================================ -->
+    <div class="ad-slot" id="ad-slot-native">
+        <script async="async" data-cfasync="false" src="https://pl30768116.effectivecpmnetwork.com/e802908c8acef6bbdd62ca1fa47b0859/invoke.js"></script>
+        <div id="container-e802908c8acef6bbdd62ca1fa47b0859"></div>
+    </div>
+
+    <div class="content-block">
+        <h2>Smartlink (sponsored link)</h2>
+        <p>এটা script না, একটা URL — সাধারণত বাটন/লিংকে ব্যবহার হয়, কেউ ক্লিক করলে সেই লিংকে নিয়ে যায়।</p>
+        <p style="margin-top: 12px;">
+            <a href="https://www.effectivecpmnetwork.com/sa94msim?key=13df97f1d1f005955fb7896fa5b4e2ef"
+               target="_blank" rel="noopener sponsored"
+               style="color: var(--accent);">Sponsored link টেস্ট করুন →</a>
+        </p>
+    </div>
+
+</main>
+
+<!-- ============================================================
+     Popunder ও Social Bar — এগুলো visual "slot" না, পুরো পেজের
+     জন্য একবারই লোড করা behavior script (popunder ক্লিকে নতুন ট্যাব
+     খোলে, social bar পুরো পেজে sticky bar হিসেবে বসে)। তাই এগুলো
+     content-এর মধ্যে না বসিয়ে পেজের শেষে একবার বসানো হয়েছে।
+     টেস্ট করার সময় নিজে বারবার ক্লিক করবেন না — এটা invalid traffic
+     হিসেবে গণ্য হয়ে account ব্যান হতে পারে।
+     ============================================================ -->
+<script src="https://pl30768115.effectivecpmnetwork.com/78/9d/5a/789d5a5390c1c31ddc982c2e12c12318.js"></script>
+<script src="https://pl30768124.effectivecpmnetwork.com/b5/5d/48/b55d486ff952a8163ef2e572cf8cc207.js"></script>
+
+</body>
+</html>
